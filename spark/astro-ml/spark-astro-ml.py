@@ -13,6 +13,10 @@
 
 # Let's grab the data'
 
+# In[ ]:
+
+
+
 # In[1]:
 
 
@@ -65,6 +69,11 @@ from pyspark.sql import SparkSession
 # In[7]:
 
 spark = SparkSession.builder.getOrCreate()
+
+
+# In[ ]:
+
+
 
 
 # Now we will read the csv file to a data frame
@@ -201,7 +210,7 @@ rf = RandomForestClassifier()
 
 # In[27]:
 
-paramGrid = ParamGridBuilder()     .addGrid(rf.numTrees, [10, 50, 100, 300])     .addGrid(rf.maxDepth, [100, 30, 15, 5])     .build()
+paramGrid = ParamGridBuilder()     .addGrid(rf.numTrees, [50, 100])     .addGrid(rf.maxDepth, [30, 15])     .build()
 
 
 # In[28]:
@@ -219,10 +228,10 @@ tvs.fit(tr_data)
 
 # In[ ]:
 
-prediction = model.transform(test)
+prediction = tvs.transform(test)
 
 
-# In[4]:
+# In[5]:
 
 # convert to .py file. Now let's submit to queue
 
